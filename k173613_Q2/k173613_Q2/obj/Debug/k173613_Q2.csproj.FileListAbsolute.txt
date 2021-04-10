@@ -1,0 +1,13 @@
+D:\Projects\ASP Assignments\ASP-WindowsServices-WebScrapping\k173613_Q2\k173613_Q2\bin\Debug\k173613_Q2.exe.config
+D:\Projects\ASP Assignments\ASP-WindowsServices-WebScrapping\k173613_Q2\k173613_Q2\bin\Debug\k173613_Q2.exe
+D:\Projects\ASP Assignments\ASP-WindowsServices-WebScrapping\k173613_Q2\k173613_Q2\bin\Debug\k173613_Q2.pdb
+D:\Projects\ASP Assignments\ASP-WindowsServices-WebScrapping\k173613_Q2\k173613_Q2\bin\Debug\Topshelf.dll
+D:\Projects\ASP Assignments\ASP-WindowsServices-WebScrapping\k173613_Q2\k173613_Q2\bin\Debug\Topshelf.xml
+D:\Projects\ASP Assignments\ASP-WindowsServices-WebScrapping\k173613_Q2\k173613_Q2\obj\Debug\k173613_Q2.csprojAssemblyReference.cache
+D:\Projects\ASP Assignments\ASP-WindowsServices-WebScrapping\k173613_Q2\k173613_Q2\obj\Debug\k173613_Q2.csproj.CoreCompileInputs.cache
+D:\Projects\ASP Assignments\ASP-WindowsServices-WebScrapping\k173613_Q2\k173613_Q2\obj\Debug\k173613_Q2.csproj.CopyComplete
+D:\Projects\ASP Assignments\ASP-WindowsServices-WebScrapping\k173613_Q2\k173613_Q2\obj\Debug\k173613_Q2.exe
+D:\Projects\ASP Assignments\ASP-WindowsServices-WebScrapping\k173613_Q2\k173613_Q2\obj\Debug\k173613_Q2.pdb
+D:\Projects\ASP Assignments\ASP-WindowsServices-WebScrapping\k173613_Q2\k173613_Q2\bin\Debug\HtmlAgilityPack.dll
+D:\Projects\ASP Assignments\ASP-WindowsServices-WebScrapping\k173613_Q2\k173613_Q2\bin\Debug\HtmlAgilityPack.pdb
+D:\Projects\ASP Assignments\ASP-WindowsServices-WebScrapping\k173613_Q2\k173613_Q2\bin\Debug\HtmlAgilityPack.xml
