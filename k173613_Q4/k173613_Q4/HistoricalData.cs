@@ -49,7 +49,7 @@ namespace k173613_Q4
             {
                 // Get Lastly Created/Modified Folder Path
                 var directory = new DirectoryInfo(Folder_path_xml);
-                Console.WriteLine(directory);
+                // Console.WriteLine(directory);
                 var myFolder = (from f in directory.GetDirectories()
                                 orderby f.LastWriteTime descending
                                 select f).First();

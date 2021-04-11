@@ -18,7 +18,7 @@ namespace k173613_Q2
 
         public ParsingPSXData()
         {
-            _timer = new Timer(1000 * 60 * 2) { AutoReset = true };     // Every 10 Minutes
+            _timer = new Timer(1000 * 60 * 10) { AutoReset = true };     // Every 10 Minutes
             _timer.Elapsed += _timer_Elapsed;
         }
 

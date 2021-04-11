@@ -22,7 +22,7 @@ namespace k173613_Q3
                     s.WhenStopped(achievingFiles => achievingFiles.Stop());
                 });
                 x.RunAsLocalSystem();
-                x.SetServiceName("AchievingPSXData");
+                x.SetServiceName("k173613_Q3");
                 x.SetDisplayName("Achieving PSX Files Data By K173613_Q3");
                 x.SetDescription("This service is responsible to move all the old XML files except for the most recent one and store to another location every 15 minutes. Developed By Sameer Khowaja K173613_Q3.");
             });

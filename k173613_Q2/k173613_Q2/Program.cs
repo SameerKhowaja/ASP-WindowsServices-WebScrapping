@@ -20,7 +20,7 @@ namespace k173613_Q2
                     s.WhenStopped(parsingPSXData => parsingPSXData.Stop());
                 });
                 x.RunAsLocalSystem();
-                x.SetServiceName("ParsingPSXData");
+                x.SetServiceName("k173613_Q2");
                 x.SetDisplayName("Parsing PSX Data By K173613_Q2");
                 x.SetDescription("This service will Parse data of downloaded Html file and create XML for all Category in seperate folder every 10 minutes. Developed By Sameer Khowaja K173613_Q2.");
             });

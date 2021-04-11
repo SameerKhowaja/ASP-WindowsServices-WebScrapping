@@ -21,9 +21,9 @@ namespace k173613_Q1
                     s.WhenStopped(downloadPSXFile => downloadPSXFile.Stop());
                 });
                 x.RunAsLocalSystem();
-                x.SetServiceName("DownloadPSX");
-                x.SetDisplayName("Download PSX File By K173613_Q1");
-                x.SetDescription("This service will download PSX data as save as html file every 5 minutes. Developed By Sameer Khowaja K173613_Q1.");
+                x.SetServiceName("k173613_Q1");
+                x.SetDisplayName("Downloading PSX Web Page Periodically By K173613_Q1");
+                x.SetDescription("This service will download PSX web page as html file every 5 minutes. Developed By Sameer Khowaja K173613_Q1.");
             });
 
             int exitCodeValue = (int)Convert.ChangeType(exitCode, exitCode.GetTypeCode());

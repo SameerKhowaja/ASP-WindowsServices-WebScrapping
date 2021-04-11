@@ -27,35 +27,43 @@ namespace k173613_Q3
             // Generate Folders
             System.IO.Directory.CreateDirectory(New_Dir_Path);
 
-            // Get Lastly Created/Modified Folder Path
-            var directory = new DirectoryInfo(Old_Dir_Path);
-            var myFolder = (from f in directory.GetDirectories()
-                            orderby f.LastWriteTime descending
-                            select f).First();
-            String myFolder_str = Convert.ToString(myFolder);   // Latest Folder Name
-            // Console.WriteLine(myFolder);
-
-            // Get All folders names
-            var Folders = new DirectoryInfo(Old_Dir_Path).GetDirectories().Select(x => x.Name).ToArray();
-            // Console.WriteLine(Folders.Length);
-
-            if(Folders.Length > 1)
+            try
             {
-                foreach (String folder_name in Folders)
+                // Get Lastly Created/Modified Folder Path
+                var directory = new DirectoryInfo(Old_Dir_Path);
+                var myFolder = (from f in directory.GetDirectories()
+                                orderby f.LastWriteTime descending
+                                select f).First();
+                String myFolder_str = Convert.ToString(myFolder);   // Latest Folder Name
+                                                                    // Console.WriteLine(myFolder);
+
+                // Get All folders names
+                var Folders = new DirectoryInfo(Old_Dir_Path).GetDirectories().Select(x => x.Name).ToArray();
+                // Console.WriteLine(Folders.Length);
+
+                if (Folders.Length > 1)
                 {
-                    if (folder_name != myFolder_str)     // Except Recent Folder
+                    foreach (String folder_name in Folders)
                     {
-                        try
+                        if (folder_name != myFolder_str)     // Except Recent Folder
                         {
-                            Directory.Move(Old_Dir_Path + folder_name, New_Dir_Path + folder_name);
-                        }
-                        catch (IOException exp)
-                        {
-                            Console.WriteLine(exp.Message);
+                            try
+                            {
+                                Directory.Move(Old_Dir_Path + folder_name, New_Dir_Path + folder_name);
+                            }
+                            catch (IOException exp)
+                            {
+                                Console.WriteLine(exp.Message);
+                            }
                         }
                     }
                 }
             }
+            catch (Exception ee)
+            {
+                // Something wrong happen
+            }
+            
         }
 
         public void Start()
