@@ -27,19 +27,27 @@ namespace k173613_Q1
             String url = file_url;
             String path = file_path;
 
-            var httpClient = new HttpClient();
-            var html = httpClient.GetStringAsync(url);
+            try
+            {
+                var httpClient = new HttpClient();
+                var html = httpClient.GetStringAsync(url);
 
-            int day = DateTime.Today.Day;
-            int month = DateTime.Today.Month;
-            int year = DateTime.Today.Year;
+                int day = DateTime.Today.Day;
+                int month = DateTime.Today.Month;
+                int year = DateTime.Today.Year;
 
-            DateTime date = new DateTime(year, month, day);
-            //string file_name = @path + "/Summary" + date.ToString("dd") + date.ToString("MMM") + date.ToString("yy") + ".html";
-            string file_name = @path + "/Summary-PSX-k173613-Q1.html";
+                DateTime date = new DateTime(year, month, day);
+                //string file_name = @path + "/Summary" + date.ToString("dd") + date.ToString("MMM") + date.ToString("yy") + ".html";
+                string file_name = @path + "/Summary-PSX-k173613-Q1.html";
 
-            string content = html.Result;
-            File.WriteAllText(file_name, content);
+                string content = html.Result;
+                File.WriteAllText(file_name, content);
+            }
+            catch(Exception ee)
+            {
+                // Net may not working
+            }
+            
         }
 
         public void Start()

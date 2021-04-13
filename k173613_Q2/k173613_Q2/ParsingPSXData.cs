@@ -60,7 +60,12 @@ namespace k173613_Q2
             // Generate Folders
             System.IO.Directory.CreateDirectory(dir_path);
             DateTime currentDateTime = DateTime.Now;
-            String mainFolder = dir_path + Convert.ToString(currentDateTime).Replace(":", ".");
+            String date = currentDateTime.Day.ToString() + currentDateTime.Month.ToString() + currentDateTime.Year.ToString();  // Date
+            String time = currentDateTime.Hour.ToString() + currentDateTime.Minute.ToString() + currentDateTime.Second.ToString();  // Time
+            String dateTime = date + time;     // Date Time like 1142021153212
+
+            String mainFolder = dir_path + Convert.ToString(dateTime).Replace(":", ".");
+            Console.WriteLine(mainFolder);
             System.IO.Directory.CreateDirectory(mainFolder);    // main folder
             for (int j = 0; j < totalCategory; j++)
             {
