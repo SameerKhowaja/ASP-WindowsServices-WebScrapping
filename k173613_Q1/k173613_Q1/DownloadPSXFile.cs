@@ -13,8 +13,6 @@ namespace k173613_Q1
     class DownloadPSXFile
     {
         private readonly Timer _timer;
-        string file_path = ConfigurationManager.AppSettings.Get("FilePath");        // Where to Save when Download
-        string file_url = ConfigurationManager.AppSettings.Get("PSX-URL-Path");     // Link from where to Download
 
         public DownloadPSXFile()
         {
@@ -24,28 +22,27 @@ namespace k173613_Q1
 
         private void _timer_Elapsed(object sender, ElapsedEventArgs e)
         {
-            String url = file_url;
-            String path = file_path;
+            string path = ConfigurationManager.AppSettings.Get("FilePath");        // Where to Save when Download
+            string url = ConfigurationManager.AppSettings.Get("PSX-URL-Path");     // Link from where to Download
 
             try
             {
                 var httpClient = new HttpClient();
                 var html = httpClient.GetStringAsync(url);
 
-                int day = DateTime.Today.Day;
-                int month = DateTime.Today.Month;
-                int year = DateTime.Today.Year;
-
-                DateTime date = new DateTime(year, month, day);
-                //string file_name = @path + "/Summary" + date.ToString("dd") + date.ToString("MMM") + date.ToString("yy") + ".html";
-                string file_name = @path + "/Summary-PSX-k173613-Q1.html";
+                string file_name = @path;   // D:/Summary-PSX-k173613-Q1.html in AppConfig
 
                 string content = html.Result;
                 File.WriteAllText(file_name, content);
             }
             catch(Exception ee)
             {
-                // Net may not working
+                // Generate Log File
+                string log_file = ConfigurationManager.AppSettings.Get("Log-File");
+
+                // Date Time Error Occured
+                DateTime logDT = DateTime.Now;
+                File.AppendAllLines(log_file, new[] { logDT.ToString() + " : DownloadPSXFile - Error Occured due to File Not Found OR Internet Issue...!" });
             }
             
         }

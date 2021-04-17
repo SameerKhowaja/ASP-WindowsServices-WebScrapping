@@ -63,7 +63,6 @@ namespace k173613_Q4
                 String date = currentDateTime.Day.ToString() + currentDateTime.Month.ToString() + currentDateTime.Year.ToString();  // Date
                 String time = currentDateTime.Hour.ToString() + currentDateTime.Minute.ToString() + currentDateTime.Second.ToString();  // Time
                 String dateTime = date + time;     // Date Time like 1142021153212
-                                                   // Console.WriteLine(dateTime);
 
                 // XML Parser
                 XmlDocument doc = new XmlDocument();
@@ -81,10 +80,8 @@ namespace k173613_Q4
                     {
                         // Load XML Content
                         doc.Load(file_name);
-                        XmlNodeList node1 = doc.GetElementsByTagName("Script");
-                        XmlNodeList node2 = doc.GetElementsByTagName("Price");
-                        String scriptName = node1[0].InnerText;
-                        String scriptPrize = node2[0].InnerText;
+                        XmlNodeList node = doc.GetElementsByTagName("Price");
+                        String scriptPrize = node[0].InnerText;
 
                         // File name without and path extension
                         String FileName = Path.GetFileNameWithoutExtension(file_name);
@@ -106,7 +103,7 @@ namespace k173613_Q4
                             jsonObject[0]["scriptData"]["lastUpdatedOn"] = dateTime;
 
                             // Append Date and Price to Data
-                            string json = "{\"Date\": \"" + dateTime.ToString() + "\", \"Price\": " + scriptPrize + " }";
+                            string json = "{\"Date\": \"" + myFolder_str + "\", \"Price\": " + scriptPrize + " }";
                             JObject rss = JObject.Parse(json);
                             jsonObject[0]["scriptData"]["Data"].Add(rss);
 
@@ -126,7 +123,7 @@ namespace k173613_Q4
                                     lastUpdatedOn = dateTime,   // Date Time like 1142021153212
                                     Data = new List<Data>() {
                                     new Data() {
-                                        Date = dateTime,
+                                        Date = myFolder_str,
                                         Price = float.Parse(scriptPrize)
                                     }
                                 }
@@ -148,6 +145,12 @@ namespace k173613_Q4
             catch(Exception ee)
             {
                 // Something get wrong
+                // Generate Log File
+                string log_file = ConfigurationManager.AppSettings.Get("Log-File");
+
+                // Date Time Error Occured
+                DateTime logDT = DateTime.Now;
+                File.AppendAllLines(log_file, new[] { logDT.ToString() + " : HistoricalData - Error Occured due No NEW Records Found...!" });
             }
             
         }

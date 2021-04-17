@@ -1,0 +1,31 @@
+17-Apr-21 7:17:19 PM : DownloadPSXFile - D:/Summary-PSX-k173613-Q1.html Not Found OR Internet Issue...!
+17-Apr-21 7:18:21 PM : DownloadPSXFile - Error Occured due to File Not Found OR Internet Issue...!
+17-Apr-21 7:18:31 PM : DownloadPSXFile - Error Occured due to File Not Found OR Internet Issue...!
+17-Apr-21 7:22:33 PM : ParsingPSXData - Error Occured due to File Not Found...!
+17-Apr-21 7:24:07 PM : ParsingPSXData - Error Occured due to File Not Found...!
+17-Apr-21 7:24:12 PM : ParsingPSXData - Error Occured due to File Not Found...!
+17-Apr-21 7:24:17 PM : ParsingPSXData - Error Occured due to File Not Found...!
+17-Apr-21 7:24:22 PM : ParsingPSXData - Error Occured due to File Not Found...!
+17-Apr-21 7:24:27 PM : ParsingPSXData - Error Occured due to File Not Found...!
+17-Apr-21 7:24:32 PM : ParsingPSXData - Error Occured due to File Not Found...!
+17-Apr-21 7:24:33 PM : DownloadPSXFile - Error Occured due to File Not Found OR Internet Issue...!
+17-Apr-21 7:24:36 PM : DownloadPSXFile - Error Occured due to File Not Found OR Internet Issue...!
+17-Apr-21 7:24:37 PM : ParsingPSXData - Error Occured due to File Not Found...!
+17-Apr-21 7:24:39 PM : DownloadPSXFile - Error Occured due to File Not Found OR Internet Issue...!
+17-Apr-21 7:24:42 PM : ParsingPSXData - Error Occured due to File Not Found...!
+17-Apr-21 7:24:42 PM : DownloadPSXFile - Error Occured due to File Not Found OR Internet Issue...!
+17-Apr-21 7:24:45 PM : DownloadPSXFile - Error Occured due to File Not Found OR Internet Issue...!
+17-Apr-21 7:24:47 PM : ParsingPSXData - Error Occured due to File Not Found...!
+17-Apr-21 7:24:48 PM : DownloadPSXFile - Error Occured due to File Not Found OR Internet Issue...!
+17-Apr-21 7:24:51 PM : DownloadPSXFile - Error Occured due to File Not Found OR Internet Issue...!
+17-Apr-21 7:24:52 PM : ParsingPSXData - Error Occured due to File Not Found...!
+17-Apr-21 7:24:54 PM : DownloadPSXFile - Error Occured due to File Not Found OR Internet Issue...!
+17-Apr-21 7:24:57 PM : ParsingPSXData - Error Occured due to File Not Found...!
+17-Apr-21 7:24:57 PM : DownloadPSXFile - Error Occured due to File Not Found OR Internet Issue...!
+17-Apr-21 7:25:02 PM : ParsingPSXData - Error Occured due to File Not Found...!
+17-Apr-21 7:30:13 PM : AchievingFiles - Error Occured due no new Records Found...!
+17-Apr-21 7:30:23 PM : AchievingFiles - Error Occured due no new Records Found...!
+17-Apr-21 7:30:33 PM : AchievingFiles - Error Occured due no new Records Found...!
+17-Apr-21 7:34:04 PM : HistoricalData - Error Occured due No NEW Records Found...!
+17-Apr-21 7:34:14 PM : HistoricalData - Error Occured due No NEW Records Found...!
+17-Apr-21 7:37:16 PM : HistoricalData - Error Occured due No NEW Records Found...!

@@ -62,6 +62,12 @@ namespace k173613_Q3
             catch (Exception ee)
             {
                 // Something wrong happen
+                // Generate Log File
+                string log_file = ConfigurationManager.AppSettings.Get("Log-File");
+
+                // Date Time Error Occured
+                DateTime logDT = DateTime.Now;
+                File.AppendAllLines(log_file, new[] { logDT.ToString() + " : AchievingFiles - Error Occured due No Records Found...!" });
             }
             
         }
