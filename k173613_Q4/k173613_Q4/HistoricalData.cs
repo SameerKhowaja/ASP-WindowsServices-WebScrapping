@@ -47,100 +47,110 @@ namespace k173613_Q4
 
             try
             {
-                // Get Lastly Created/Modified Folder Path
-                var directory = new DirectoryInfo(Folder_path_xml);
-                // Console.WriteLine(directory);
-                var myFolder = (from f in directory.GetDirectories()
-                                orderby f.LastWriteTime descending
-                                select f).First();
-                String myFolder_str = Convert.ToString(myFolder);   // Latest Folder Name
-
                 // Get All folders names
-                var Folders = new DirectoryInfo(Folder_path_xml + myFolder_str).GetDirectories().Select(x => x.Name).ToArray();
+                var myFolder_str = new DirectoryInfo(Folder_path_xml).GetDirectories().Select(x => x.Name).ToArray();
 
-                // Local System Current Date Time
-                DateTime currentDateTime = DateTime.Now;
-                String date = currentDateTime.Day.ToString() + currentDateTime.Month.ToString() + currentDateTime.Year.ToString();  // Date
-                String time = currentDateTime.Hour.ToString() + currentDateTime.Minute.ToString() + currentDateTime.Second.ToString();  // Time
-                String dateTime = date + time;     // Date Time like 1142021153212
-
-                // XML Parser
-                XmlDocument doc = new XmlDocument();
-
-                // Parsing each Folder contain  XML File
-                foreach (String folder in Folders)
+                // For Every Folders i.e. 1742021193848, 1842021193848, ... etc
+                foreach (string myFolder in myFolder_str)
                 {
-                    // Folder XML
-                    string[] Files = Directory.GetFiles(Folder_path_xml + myFolder_str + @"\" + folder, "*.xml");
-                    // Generate Folders in JSON Folder of Category Names
-                    System.IO.Directory.CreateDirectory(Folder_path_json + folder);
+                    // Local System Current Date Time
+                    DateTime currentDateTime = DateTime.Now;
+                    String date = currentDateTime.Day.ToString() + currentDateTime.Month.ToString() + currentDateTime.Year.ToString();  // Date
+                    String time = currentDateTime.Hour.ToString() + currentDateTime.Minute.ToString() + currentDateTime.Second.ToString();  // Time
+                    String localSystem_dateTime = date + time;     // Date Time like 1142021153212
 
-                    // Parsing each XML file and make JSON
-                    foreach (String file_name in Files)
+                    // Get All folders names inside main folder (This contain Category name)
+                    var Folders = new DirectoryInfo(Folder_path_xml + myFolder).GetDirectories().Select(x => x.Name).ToArray();
+
+                    // XML Parser
+                    XmlDocument doc = new XmlDocument();
+
+                    //Console.WriteLine(myFolder);
+
+                    // Parsing each Folder contain  XML File
+                    foreach (String folder in Folders)
                     {
-                        // Load XML Content
-                        doc.Load(file_name);
-                        XmlNodeList node = doc.GetElementsByTagName("Price");
-                        String scriptPrize = node[0].InnerText;
+                        //Console.WriteLine(folder);
 
-                        // File name without and path extension
-                        String FileName = Path.GetFileNameWithoutExtension(file_name);
-                        // Console.WriteLine(FileName);
+                        // Generate Folders in JSON Folder of Category Names
+                        System.IO.Directory.CreateDirectory(Folder_path_json + folder);
 
-                        // Create and Load JSON Data if JSON File Not Exist
-                        if (File.Exists(Folder_path_json + folder + "\\" + FileName + ".json"))
+                        // Folder XML
+                        string[] Files = Directory.GetFiles(Folder_path_xml + myFolder + @"\" + folder, "*.xml");
+                        // Parsing each XML file and make JSON
+                        foreach (String file_name in Files)
                         {
-                            // Append Data if JSON File Already Exists
-                            var filePath = Folder_path_json + folder + "\\" + FileName + ".json";
+                            //Console.WriteLine(file_name);
 
-                            // Read existing json data as Text
-                            var jsonData = System.IO.File.ReadAllText(filePath);
+                            // Get the creation time of a well-known directory.
+                            DateTime creation_dt = Directory.GetLastWriteTime(file_name);
+                            String Fol_date = creation_dt.Day.ToString() + creation_dt.Month.ToString() + creation_dt.Year.ToString();  // Date
+                            String Fol_time = creation_dt.Hour.ToString() + creation_dt.Minute.ToString() + creation_dt.Second.ToString();  // Time
+                            String File_dateTime = Fol_date + Fol_time;     // Date Time like 1142021153212
+                            //Console.WriteLine(File_dateTime);
 
-                            // DeserializeObject JSON
-                            dynamic jsonObject = Newtonsoft.Json.JsonConvert.DeserializeObject(jsonData);
+                            // Load XML Content
+                            doc.Load(file_name);
+                            XmlNodeList node = doc.GetElementsByTagName("Price");
+                            String scriptPrize = node[0].InnerText;
 
-                            // Update lastUpdatedOn 
-                            jsonObject[0]["scriptData"]["lastUpdatedOn"] = dateTime;
+                            // File name without and path extension
+                            String FileName = Path.GetFileNameWithoutExtension(file_name);
 
-                            // Append Date and Price to Data
-                            string json = "{\"Date\": \"" + myFolder_str + "\", \"Price\": " + scriptPrize + " }";
-                            JObject rss = JObject.Parse(json);
-                            jsonObject[0]["scriptData"]["Data"].Add(rss);
-
-                            // SerializeObject JSON and Write to File
-                            string outputJSON = Newtonsoft.Json.JsonConvert.SerializeObject(jsonObject, Newtonsoft.Json.Formatting.Indented);
-                            System.IO.File.WriteAllText(Folder_path_json + folder + "\\" + FileName + ".json", outputJSON);
-                            // Console.WriteLine(outputJSON);
-                        }
-                        else
-                        {
-                            // Creating JSON First Time if not Exists
-                            List<ScriptData> _data = new List<ScriptData>();
-                            _data.Add(new ScriptData()
+                            // Create and Load JSON Data if JSON File Not Exist
+                            if (File.Exists(Folder_path_json + folder + "\\" + FileName + ".json"))
                             {
-                                scriptData = new LastUpdatedOn()
-                                {
-                                    lastUpdatedOn = dateTime,   // Date Time like 1142021153212
-                                    Data = new List<Data>() {
-                                    new Data() {
-                                        Date = myFolder_str,
-                                        Price = float.Parse(scriptPrize)
-                                    }
-                                }
-                                }
+                                // Append Data if JSON File Already Exists
+                                var filePath = Folder_path_json + folder + "\\" + FileName + ".json";
+
+                                // Read existing json data as Text
+                                var jsonData = System.IO.File.ReadAllText(filePath);
+
+                                // DeserializeObject JSON
+                                dynamic jsonObject = Newtonsoft.Json.JsonConvert.DeserializeObject(jsonData);
+
+                                // Update lastUpdatedOn 
+                                jsonObject[0]["scriptData"]["lastUpdatedOn"] = localSystem_dateTime;
+
+                                // Append Date and Price to Data
+                                string json = "{\"Date\": \"" + File_dateTime + "\", \"Price\": " + scriptPrize + " }";
+                                JObject rss = JObject.Parse(json);
+                                jsonObject[0]["scriptData"]["Data"].Add(rss);
+
+                                // SerializeObject JSON and Write to File
+                                string outputJSON = Newtonsoft.Json.JsonConvert.SerializeObject(jsonObject, Newtonsoft.Json.Formatting.Indented);
+                                System.IO.File.WriteAllText(Folder_path_json + folder + "\\" + FileName + ".json", outputJSON);
+                                // Console.WriteLine(outputJSON);
                             }
-                            );
-                            // Serialize and Write to File
-                            string json = Newtonsoft.Json.JsonConvert.SerializeObject(_data, Newtonsoft.Json.Formatting.Indented);
-                            System.IO.File.WriteAllText(Folder_path_json + folder + "\\" + FileName + ".json", json);
-                            // Console.WriteLine(json);
+                            else
+                            {
+                                // Creating JSON First Time if not Exists
+                                List<ScriptData> _data = new List<ScriptData>();
+                                _data.Add(new ScriptData()
+                                {
+                                    scriptData = new LastUpdatedOn()
+                                    {
+                                        lastUpdatedOn = localSystem_dateTime,   // Date Time like 1142021153212
+                                        Data = new List<Data>() {
+                                            new Data() {
+                                                Date = File_dateTime,
+                                                Price = float.Parse(scriptPrize)
+                                            }
+                                        }
+                                    }
+                                });
+
+                                // Serialize and Write to File
+                                string json = Newtonsoft.Json.JsonConvert.SerializeObject(_data, Newtonsoft.Json.Formatting.Indented);
+                                System.IO.File.WriteAllText(Folder_path_json + folder + "\\" + FileName + ".json", json);
+                                // Console.WriteLine(json);
+                            }
                         }
-
                     }
-                }
 
-                // Delete XML Folder Directory
-                Directory.Delete(Folder_path_xml + myFolder_str, true);
+                    // Delete Folder Directory after Parsed
+                    Directory.Delete(Folder_path_xml + myFolder, true);
+                }
             }
             catch(Exception ee)
             {
@@ -150,7 +160,7 @@ namespace k173613_Q4
 
                 // Date Time Error Occured
                 DateTime logDT = DateTime.Now;
-                File.AppendAllLines(log_file, new[] { logDT.ToString() + " : HistoricalData - Error Occured due No NEW Records Found...!" });
+                File.AppendAllLines(log_file, new[] { logDT.ToString() + " : HistoricalData - Error Occured due to NO NEW Records Found...!" });
             }
             
         }
